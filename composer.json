@@ -1,0 +1,13 @@
+{
+    "name": "raajkumarpaneru/laravel-logger",
+    "description": "Log query execution time with other related information to database, logfile etc.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Raj Kumar Paneru",
+            "email": "raajkumarpaneru@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
