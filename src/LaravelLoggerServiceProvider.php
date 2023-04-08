@@ -15,5 +15,8 @@ class LaravelLoggerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app['router']->aliasMiddleware('enable-log', LogQueryExecutionTimeMiddleware::class);
+        $this->publishes([
+            __DIR__ . '/../database/migrations' => database_path('migrations')
+        ], 'migration');
     }
 }
