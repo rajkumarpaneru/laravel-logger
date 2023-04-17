@@ -2,7 +2,6 @@
 
 namespace Raajkumarpaneru\LaravelLogger;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelLoggerServiceProvider extends ServiceProvider
@@ -16,8 +15,13 @@ class LaravelLoggerServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . '/../database/migrations' => database_path('migrations')
-        ], 'migration');
+        if ($this->app->runningInConsole()) {
+            if (!class_exists('CreateLaravelQueryExecutionLogs')) {
+                $this->publishes([
+                    __DIR__ . '/../database/migrations/create_laravel_query_execution_logs.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_laravel_query_execution_logs.php'),
+                    // you can add any number of migrations here
+                ], 'migrations');
+            }
+        }
     }
 }
